@@ -17,6 +17,18 @@ namespace FastCRUD.Controllers
             return View(db.Pessoas.ToList());
         }
 
+        // GET: Pessoa
+        [HttpPost]
+        public ActionResult Index(string texto)
+        {
+            if (texto == null)
+            {
+                return null;
+            }
+
+            return View(db.Pessoas.Where(p => p.Nome.Contains(texto)).OrderBy(p => p.Nome));
+        }
+
         // GET: Pessoas/Details/5
         public ActionResult Details(int? id)
         {
